@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Drum Kit</title>
+</head>
+<body>
+    <h1>RockSka Virtual Drum Kit</h1>
+    <p>Press the keys to play different drum sounds!</p>
+    <img src="drumset/Shortcut.png" alt="">
+
+       
+    <script>
+        // Define key mappings and sound files
+        const drumSounds = {
+            tomtom: { keys: ["D", "F", "G", "H", "J", "K"], sound: new Audio('sounds/tomtom.wav') },
+            bas: { keys: ["B", "M"], sound: new Audio('sounds/bass.wav') },
+            snare: { keys: ["V", "C"], sound: new Audio('sounds/snare.wav') },
+            hihat: { keys: ["X", "N"], sound: new Audio('sounds/hihat.wav') },
+            crash: { keys: ["E", "I"], sound: new Audio('sounds/crash.wav') }
+        };
+
+        // Function to play a sound when a key is pressed
+        document.addEventListener("keydown", (event) => {
+            const key = event.key.toUpperCase();
+
+            // Check each drum type and play its sound if the key matches
+            for (const drum in drumSounds) {
+                if (drumSounds[drum].keys.includes(key)) {
+                    drumSounds[drum].sound.currentTime = 0; // Reset the sound to play immediately
+                    drumSounds[drum].sound.play();
+                    break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
